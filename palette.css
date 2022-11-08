@@ -1,0 +1,10 @@
+.root_theme_initial {
+  --color-first: rgb(76, 99, 95);
+  --color-second: rgb(52, 68, 65);
+  --color-accent: rgb(96, 206, 182);
+  --color-title: rgb(255, 255, 255);
+  --color-text: rgb(219, 219, 219);
+  --background: rgb(0, 0, 0);
+}
+
+

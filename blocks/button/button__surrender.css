@@ -1,0 +1,6 @@
+.button__surrender {
+  grid-area: surrender;
+  width: 100px;
+  height: 100px;
+  justify-self: end;
+}

@@ -1,0 +1,7 @@
+.button__paper {
+  width: 100px;
+  height: 100px;
+  background: url(../../images/paper.png);
+  background-size: cover;
+  justify-self: center;
+}

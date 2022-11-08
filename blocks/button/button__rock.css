@@ -1,0 +1,7 @@
+.button__rock {
+  width: 100px;
+  height: 100px;
+  background: url(../../images/rock.png);
+  background-size: cover;
+  justify-self: end;
+}

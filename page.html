@@ -1,13 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock-paper-scissors</title>
-    <script src="script.js"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock-paper-scissors</title>
+  <link rel="stylesheet" href="./index.css">
 </head>
-<body>
-    
+
+<body class="root root_theme_initial">
+  <main class="content">
+    <button type="button" class="button button__close">X</button>
+    <h1 class="content__title">Rock-paper-scissors</h1>
+    <div class="content__container">
+      <div class="content__screen">
+        <figure class="content__figure">
+          <figcaption class="content__caption">you</figcaption>
+          <img src="#" alt="your weapon" class="content__image player-image">
+        </figure>
+        <div class="content__column">
+          <p class="content__round-result">Who wins?</p>
+          <p class="content__vs">vs</p>
+          <p class="counter"><span class="counter__you">0</span> : <span class="counter__opp">0</span></p>
+        </div>
+        <figure class="content__figure">
+          <figcaption class="content__caption">opponent</figcaption>
+          <img src="#" alt="opponent's weapon" class="content__image opponent-image">
+        </figure>
+      </div>
+      <button type="button" class="button button__rock button__play" aria-label="Rock-button" value="Rock"></button>
+      <button type="button" class="button button__play button__paper" aria-label="Paper-button" value="Paper"></button>
+      <button type="button" class="button button__play button__scissors" aria-label="Scissors-button" value="Scissors"></button>
+      <button type="button" class="button button__surrender" aria-label="Surrender">Give up</button>
+      <button type="button" class="button button__new-game" aria-label="Start new game">New game</button>
+    </div>
+  </main>
+
 </body>
+<script src="script.js"></script>
 </html>

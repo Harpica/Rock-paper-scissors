@@ -1,0 +1,5 @@
+.button__new-game {
+  grid-area: new-game;
+  width: 100px;
+  height: 100px;
+}

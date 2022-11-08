@@ -1,0 +1,7 @@
+.content__column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-basis: 100px;
+}

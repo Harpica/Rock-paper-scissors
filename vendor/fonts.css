@@ -1,0 +1,20 @@
+
+@font-face {
+  font-family: "Silkscreen";
+  src: url(../vendor/fonts/silkscreen.woff2) format("woff2");
+  src: url(./fonts/silkscreen.woff) format("woff");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Rajdhani";
+  src: url(./fonts/Rajdhani-Regular.ttf) format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Rajdhani";
+  src: url(./fonts/Rajdhani-Bold.ttf) format("truetype");
+  font-weight: 600;
+}
+

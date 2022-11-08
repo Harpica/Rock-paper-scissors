@@ -1,0 +1,9 @@
+.content__screen {
+  grid-area: screen;
+  display: flex;
+  justify-content: space-between;
+  min-height: 150px;
+  border-radius: 5px;
+  border: 2px solid var(--color-accent);
+  background-color: var(--color-second);
+}

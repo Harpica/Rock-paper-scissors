@@ -1,0 +1,7 @@
+.button__scissors {
+  width: 100px;
+  height: 100px;
+  background: url(../../images/scissors.png);
+  background-size: cover;
+  justify-self: start;
+}

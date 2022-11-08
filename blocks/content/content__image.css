@@ -1,0 +1,6 @@
+.content__image {
+  box-sizing: border-box;
+  width: 120px;
+  aspect-ratio: 1 / 1;
+  padding: 5px;
+}

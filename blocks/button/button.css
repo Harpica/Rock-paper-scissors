@@ -1,0 +1,17 @@
+.button {
+  color: var(--color-text);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: url(../../images/button.png);
+  background-size: cover;
+}
+
+.button:hover {
+  filter: brightness(1.5) hue-rotate(0deg);
+}
+
+.button:active {
+  filter: brightness(0.7);
+  border: 2px solid var(--color-second);
+}

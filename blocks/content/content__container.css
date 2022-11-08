@@ -1,0 +1,9 @@
+.content__container {
+  display: grid;
+  grid-template-areas: "screen screen screen"
+  "rock paper scissors"
+  "surrender . new-game";
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 40px;
+  column-gap: 15px;
+}
