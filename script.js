@@ -57,16 +57,57 @@ function generateStars() {
 
 generateStars();
 
-function computerPlay() {
-  computerSelection = Math.floor(Math.random() * 3);
-  computerSelection == 0
-    ? (computerSelection = 'Rock')
-    : computerSelection == 1
-    ? (computerSelection = 'Paper')
-    : (computerSelection = 'Scissors');
-  console.log(computerSelection);
-  return computerSelection;
-}
+
+// Объект, хранящий информацию о выборе компьютера + зависимости для разных планет
+let AIState = {
+  counter: 0,
+  nextChoice: '',
+  computerSelection: '',
+  // Обычный равновероятностный выбор, чем играть
+  playFairOptions: function() {
+    this.computerSelection = Math.floor(Math.random() * 3);
+    this.computerSelection == 0
+      ? (this.computerSelection = 'Rock')
+      : this.computerSelection == 1
+      ? (this.computerSelection = 'Paper')
+      : (this.computerSelection = 'Scissors');
+    return AIState
+  },
+  // Планета, которая начинает с камня и выбирает каждый второй раз камень
+  playGameRock: function() {
+    if (this.counter === 0) {
+      this.counter = 1;
+      this.computerSelection = 'Rock';
+      return AIState
+    } else if (this.counter === 1) {
+      this.counter = 0;
+      this.playFairOptions();
+      return AIState
+    }
+  },
+  // Планета, которая не любит ножницы (никогда их не выбирает)
+  playWithoutScissors: function() {
+    this.computerSelection = Math.floor(Math.random() * 2);
+    this.computerSelection == 0
+      ? (this.computerSelection = 'Rock')
+      : (this.computerSelection = 'Paper');
+      return AIState
+  },
+  // Планета, которая повторяет предыдущее значение игрока
+  playMimic: function(playerSelection) {
+    if (this.counter === 0) {
+      this.playFairOptions();
+      this.nextChoice = playerSelection;
+      this.counter = 1;
+      return AIState
+    } else {
+      this.computerSelection = this.nextChoice;
+      this.nextChoice = playerSelection;
+      return AIState
+    }
+  }
+};
+
 
 // Проверка победителя
 function checkWinner(playerResult, oppResult) {
@@ -114,44 +155,44 @@ const playButtons = Array.from(document.querySelectorAll('.button__play'));
 playButtons.forEach((button) => {
   button.addEventListener('click', (event) => {
     playerSelection = event.target.value;
-    computerPlay();
-    showOnScreen(oppImage, computerSelection);
+    AIState.playMimic(playerSelection);
+    showOnScreen(oppImage, AIState.computerSelection);
     showOnScreen(playerImage, playerSelection);
-    playRound(computerSelection, playerSelection);
+    playRound(AIState, playerSelection);
     checkWinner(playerResult, oppResult);
   });
 });
 
-function playRound(computerSelection, playerSelection) {
+function playRound(AIState, playerSelection) {
+  console.log(AIState.computerSelection);
+  console.log(playerSelection);
   switch (playerSelection) {
-    case computerSelection:
+    case AIState.computerSelection:
       roundResultNotification = 'Dead heat!';
-
       break;
     case 'Rock':
-      if ((computerSelection = 'Scissors')) {
+      if ((AIState.computerSelection == 'Scissors')) {
         roundResultNotification = 'You Win! Rock beats Scissors';
         playerResult += 1;
-        console.log(playerResult);
-      } else if ((computerSelection = 'Paper')) {
+      } else if ((AIState.computerSelection == 'Paper')) {
         roundResultNotification = 'You Lose! Paper beats Rock';
         oppResult += 1;
       }
       break;
     case 'Paper':
-      if ((computerSelection = 'Scissors')) {
+      if ((AIState.computerSelection == 'Scissors')) {
         roundResultNotification = 'You Lose! Scissors beats Paper';
         oppResult += 1;
-      } else if ((computerSelection = 'Rock')) {
+      } else if ((AIState.computerSelection =='Rock')) {
         roundResultNotification = 'You Win! Paper beats Rock';
         playerResult += 1;
       }
       break;
     case 'Scissors':
-      if ((computerSelection = 'Paper')) {
+      if ((AIState.computerSelection == 'Paper')) {
         roundResultNotification = 'You Win! Scissors beats Paper';
         playerResult += 1;
-      } else if ((computerSelection = 'Rock')) {
+      } else if ((AIState.computerSelection == 'Rock')) {
         roundResultNotification = 'You Lose! Rock beats Scissors';
         oppResult += 1;
       }
