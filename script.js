@@ -240,9 +240,9 @@ setInterval(animateWritting, 10000, text);
 // Drag'n'Drop для окошка
 let content = root.querySelector('.content');
 function onMouseDown(event) {
-  console.log('hello');
   let window = event.target.closest('.content');
   window.classList.add('content_moved');
+
   let shiftX = event.clientX - window.getBoundingClientRect().left;
   let shiftY = event.clientY - window.getBoundingClientRect().top;
 
