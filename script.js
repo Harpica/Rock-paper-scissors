@@ -57,57 +57,55 @@ function generateStars() {
 
 generateStars();
 
-
 // Объект, хранящий информацию о выборе компьютера + зависимости для разных планет
 let AIState = {
   counter: 0,
   nextChoice: '',
   computerSelection: '',
   // Обычный равновероятностный выбор, чем играть
-  playFairOptions: function() {
+  playFairOptions: function () {
     this.computerSelection = Math.floor(Math.random() * 3);
     this.computerSelection == 0
       ? (this.computerSelection = 'Rock')
       : this.computerSelection == 1
       ? (this.computerSelection = 'Paper')
       : (this.computerSelection = 'Scissors');
-    return AIState
+    return AIState;
   },
   // Планета, которая начинает с камня и выбирает каждый второй раз камень
-  playGameRock: function() {
+  playGameRock: function () {
     if (this.counter === 0) {
       this.counter = 1;
       this.computerSelection = 'Rock';
-      return AIState
+      return AIState;
     } else if (this.counter === 1) {
       this.counter = 0;
       this.playFairOptions();
-      return AIState
+      return AIState;
     }
   },
   // Планета, которая не любит ножницы (никогда их не выбирает)
-  playWithoutScissors: function() {
+  playWithoutScissors: function () {
     this.computerSelection = Math.floor(Math.random() * 2);
     this.computerSelection == 0
       ? (this.computerSelection = 'Rock')
       : (this.computerSelection = 'Paper');
-      return AIState
+    return AIState;
   },
   // Планета, которая повторяет предыдущее значение игрока
-  playMimic: function(playerSelection) {
+  playMimic: function (playerSelection) {
     if (this.counter === 0) {
       this.playFairOptions();
       this.nextChoice = playerSelection;
       this.counter = 1;
-      return AIState
+      return AIState;
     } else {
       this.computerSelection = this.nextChoice;
       this.nextChoice = playerSelection;
-      return AIState
+      return AIState;
     }
-  }
+  },
 };
-
 
 // Проверка победителя
 function checkWinner(playerResult, oppResult) {
@@ -171,28 +169,28 @@ function playRound(AIState, playerSelection) {
       roundResultNotification = 'Dead heat!';
       break;
     case 'Rock':
-      if ((AIState.computerSelection == 'Scissors')) {
+      if (AIState.computerSelection == 'Scissors') {
         roundResultNotification = 'You Win! Rock beats Scissors';
         playerResult += 1;
-      } else if ((AIState.computerSelection == 'Paper')) {
+      } else if (AIState.computerSelection == 'Paper') {
         roundResultNotification = 'You Lose! Paper beats Rock';
         oppResult += 1;
       }
       break;
     case 'Paper':
-      if ((AIState.computerSelection == 'Scissors')) {
+      if (AIState.computerSelection == 'Scissors') {
         roundResultNotification = 'You Lose! Scissors beats Paper';
         oppResult += 1;
-      } else if ((AIState.computerSelection =='Rock')) {
+      } else if (AIState.computerSelection == 'Rock') {
         roundResultNotification = 'You Win! Paper beats Rock';
         playerResult += 1;
       }
       break;
     case 'Scissors':
-      if ((AIState.computerSelection == 'Paper')) {
+      if (AIState.computerSelection == 'Paper') {
         roundResultNotification = 'You Win! Scissors beats Paper';
         playerResult += 1;
-      } else if ((AIState.computerSelection == 'Rock')) {
+      } else if (AIState.computerSelection == 'Rock') {
         roundResultNotification = 'You Lose! Rock beats Scissors';
         oppResult += 1;
       }
@@ -238,3 +236,26 @@ function animateWritting(text) {
 animateWritting(text);
 
 setInterval(animateWritting, 10000, text);
+
+// Drag'n'Drop для окошка
+let content = root.querySelector('.content');
+function onMouseDown(event) {
+  console.log('hello');
+  let window = event.target.closest('.content');
+  window.classList.add('content_moved');
+  let shiftX = event.clientX - window.getBoundingClientRect().left;
+  let shiftY = event.clientY - window.getBoundingClientRect().top;
+
+  function onMouseMove(event) {
+    window.style.left = event.pageX - shiftX + 'px';
+    window.style.top = event.pageY - shiftY + 'px';
+  }
+  function onMouseUp() {
+    window.removeEventListener('mousemove', onMouseMove);
+  }
+
+  window.addEventListener('mousemove', onMouseMove);
+  document.addEventListener('mouseup', onMouseUp);
+}
+
+content.addEventListener('mousedown', onMouseDown);
