@@ -215,6 +215,7 @@ function startNewGame() {
   counterOpp.textContent = 0;
   playerResult = 0;
   oppResult = 0;
+  AIState.counter = 0;
   showOnScreen(playerImage);
   showOnScreen(oppImage);
 }
