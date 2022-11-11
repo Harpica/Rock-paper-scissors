@@ -24,3 +24,9 @@
 @import url(./blocks/button/button__scissors.css);
 @import url(./blocks/button/button__surrender.css);
 @import url(./blocks/star/star.css);
+@import url(./blocks/planet/planet.css);
+@import url(./blocks/planet/planet_type_top.css);
+@import url(./blocks/planet/planet_type_middle.css);
+@import url(./blocks/planet/planet_type_bottom.css);
+@import url(./blocks/popup/popup.css);
+@import url(./blocks/popup/popup_opened.css);

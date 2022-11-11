@@ -1,0 +1,9 @@
+.planet {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0;
+}

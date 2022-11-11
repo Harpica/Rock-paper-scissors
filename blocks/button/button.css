@@ -5,13 +5,14 @@
   cursor: pointer;
   background: url(../../images/button.png);
   background-size: cover;
+  filter: hue-rotate(var(--hue-rotate));
 }
 
 .button:hover {
-  filter: brightness(1.5) hue-rotate(0deg);
+  filter: brightness(1.5) hue-rotate(var(--hue-rotate));
 }
 
 .button:active {
-  filter: brightness(0.7);
+  filter: brightness(0.7) hue-rotate(var(--hue-rotate));
   border: 2px solid var(--color-second);
 }

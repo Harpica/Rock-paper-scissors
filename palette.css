@@ -1,10 +1,14 @@
 .root_theme_initial {
-  --color-first: rgb(76, 99, 95);
-  --color-second: rgb(52, 68, 65);
-  --color-accent: rgb(96, 206, 182);
-  --color-title: rgb(255, 255, 255);
-  --color-text: rgb(219, 219, 219);
-  --background: rgb(0, 0, 0);
+  /* main color for hsl*/
+  --color-main: 170;
+  --color-first: hsl(var(--color-main), 13%, 34%);
+  --color-second: hsl(var(--color-main), 12%, 24%);
+  --color-accent: hsl(var(--color-main), 53%, 59%);
+  --color-title: hsl(0, 0%, 100%);
+  --color-text: hsl(0, 0%, 86%);
+  --background: hsl(0, 0%, 0%);
+  --hue-rotate: 0deg;
+
 }
 
 

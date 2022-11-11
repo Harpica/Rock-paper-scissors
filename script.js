@@ -62,6 +62,7 @@ let AIState = {
   counter: 0,
   nextChoice: '',
   computerSelection: '',
+  algoStyle: '',
   // Обычный равновероятностный выбор, чем играть
   playFairOptions: function () {
     this.computerSelection = Math.floor(Math.random() * 3);
@@ -153,7 +154,11 @@ const playButtons = Array.from(document.querySelectorAll('.button__play'));
 playButtons.forEach((button) => {
   button.addEventListener('click', (event) => {
     playerSelection = event.target.value;
-    AIState.playMimic(playerSelection);
+    AIState.algoStyle === 'Rock'
+    ? AIState.playGameRock(playerSelection)
+      : AIState.algoStyle === 'HateScissors'
+      ? AIState.playWithoutScissors(playerSelection)
+      : AIState.playMimic(playerSelection);
     showOnScreen(oppImage, AIState.computerSelection);
     showOnScreen(playerImage, playerSelection);
     playRound(AIState, playerSelection);
@@ -259,3 +264,53 @@ function onMouseDown(event) {
 }
 
 content.addEventListener('mousedown', onMouseDown);
+
+// попытка давать консольке цвет планеты
+// зависимость h в hsl и угла вращения в hue-rotate для нарисованных кнопок - модуль(h - угол)
+// генерации цвета планеты
+let planets = Array.from(root.querySelectorAll('.planet'));
+let planetsValues = [];
+let closeButton = content.querySelector('.button__close');
+let planetsAlgoStyles = ['Rock', 'HateScissors', 'Mimic'];
+
+for (let i = 0; i < planets.length; i++) {
+  let color = randomBetween(0, 360);
+  planetsValues.push({
+    mainHslColor: color,
+    filterRotate: Math.abs(color - 180) + 'deg',
+    algoStyle: planetsAlgoStyles[i],
+  });
+}
+
+for (let i = 0; i < planetsValues.length; i++) {
+  planets[
+    i
+  ].style.backgroundColor = `hsl(${planetsValues[i].mainHslColor}, 100%, 50%)`;
+  planets[i].addEventListener('click', openContent);
+  planets[i]['planet'] = planetsValues[i];
+  console.log(planets[i].planet.algoStyle);
+}
+
+function openContent(evt) {
+  openPopup(content);
+  AIState.algoStyle = evt.target.planet.algoStyle;
+  console.log(AIState.algoStyle);
+  root.style.setProperty('--color-main', evt.target.planet.mainHslColor);
+  root.style.setProperty('--hue-rotate', evt.target.planet.filterRotate);
+  closeButton.addEventListener('click', closeButtonHandler);
+}
+
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+}
+
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+}
+
+function closeButtonHandler(evt) {
+  let popup = evt.target.closest('.popup');
+  startNewGame();
+  closePopup(popup);
+  closeButton.removeEventListener('click', closeButtonHandler);
+}
