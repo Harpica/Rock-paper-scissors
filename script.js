@@ -286,7 +286,7 @@ for (let i = 0; i < planets.length; i++) {
 for (let i = 0; i < planetsValues.length; i++) {
   planets[
     i
-  ].style.backgroundColor = `hsl(${planetsValues[i].mainHslColor}, 100%, 50%)`;
+  ].style.backgroundColor = `hsl(${planetsValues[i].mainHslColor}, 50%, 50%)`;
   planets[i].addEventListener('click', openContent);
   planets[i]['planet'] = planetsValues[i];
   console.log(planets[i].planet.algoStyle);

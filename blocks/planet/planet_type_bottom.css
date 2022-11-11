@@ -1,4 +1,6 @@
-.planet_type_middle {
+.planet_type_bottom {
   top: 78%;
   left: 8%;
+  width: 90px;
+  height: 90px;
 }
