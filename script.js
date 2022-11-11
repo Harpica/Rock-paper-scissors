@@ -314,4 +314,6 @@ function closeButtonHandler(evt) {
   startNewGame();
   closePopup(popup);
   closeButton.removeEventListener('click', closeButtonHandler);
+  popup.classList.remove('content_moved');
+  popup.removeAttribute('style');
 }
