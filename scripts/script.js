@@ -1,3 +1,6 @@
+import {generateStars} from './modules/stars.js';
+import { randomBetween } from './modules/utils.js';
+
 let computerSelection = '';
 let playerSelection = '';
 let roundResult = 0;
@@ -10,52 +13,9 @@ const svgSelections = {
   none: './images/question.svg',
 };
 
-// Star generation
 const root = document.querySelector('.root');
 
-const starParam = {
-  amount: 200,
-  size: {
-    min: 2,
-    max: 5,
-    giant: 10,
-  },
-  duration: {
-    min: 2,
-    max: 10,
-  },
-};
-
-function randomBetween(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-function generateStars() {
-  for (let i = 0; i < starParam.amount; i++) {
-    const star = document.createElement('div');
-    star.setAttribute('class', 'star');
-
-    const getSize = function () {
-      if (Math.random() === 0) {
-        return starParam.size.giant;
-      } else {
-        return randomBetween(starParam.size.min, starParam.size.max);
-      }
-    };
-    const size = getSize();
-    star.style.width = `${size}px`;
-    star.style.height = `${size}px`;
-    star.style.left = `${Math.random() * 100}%`;
-    star.style.top = `${Math.random() * 100}%`;
-    star.style.animationDuration = `${randomBetween(
-      starParam.duration.min,
-      starParam.duration.max
-    )}s`;
-    root.append(star);
-  }
-}
-
-generateStars();
+generateStars(root);
 
 // Объект, хранящий информацию о выборе компьютера + зависимости для разных планет
 let AIState = {
@@ -115,11 +75,6 @@ function checkWinner(playerResult, oppResult) {
   } else if (oppResult === 3) {
     alert('You Lose');
   }
-}
-
-function capitalize(someString) {
-  return (someString =
-    someString[0].toUpperCase() + someString.slice(1).toLowerCase());
 }
 
 // Если игрок нажал ножницы - присвоить значение playerSelection - scissors + вызвать функцию игры
@@ -227,10 +182,10 @@ showOnScreen(oppImage);
 
 // анимация набора текста
 const textContainer = document.querySelector('.content__title');
-text = textContainer.textContent;
+const text = textContainer.textContent;
 
 function animateWritting(text) {
-  textArray = text.split('');
+  const textArray = text.split('');
   textContainer.textContent = textArray[0];
   for (let i = 1; i < textArray.length; i++) {
     setTimeout(() => {
