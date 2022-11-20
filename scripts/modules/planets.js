@@ -1,5 +1,4 @@
 import { randomBetween, openPopup } from './utils.js';
-import { closeButtonHandler, showOnScreen, playerImage, oppImage } from './play-game.js';
 import { content, root, closeButton } from './constants.js';
 
 class Planet {
@@ -21,18 +20,13 @@ class Planet {
   }
   _setEventListeners(currentState) {
     this._planetElement.addEventListener('click', () => {
-      this._openContent(currentState);
+      this._choosePlanet(currentState);
     });
   }
-  _openContent(currentState) {
-    openPopup(content);
-    // показывает дефолтные изображения "?" на экранчиках
-    showOnScreen(playerImage);
-    showOnScreen(oppImage);
+  _choosePlanet(currentState) {
     root.style.setProperty('--color-main', this._mainHslColor);
     // зависимость h в hsl и угла вращения в hue-rotate для нарисованных кнопок - модуль(h - угол)
     root.style.setProperty('--hue-rotate', this._filterRotate);
-    closeButton.addEventListener('click', closeButtonHandler);
     currentState.planet = this;
   }
   _playFairOptions() {

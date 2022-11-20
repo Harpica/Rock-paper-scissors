@@ -1,5 +1,5 @@
-import { content, root, svgSelections, currentState, closeButton} from './constants.js';
-import { closePopup } from './utils.js';
+import { content, root, svgSelections, currentState, closeButton, interval} from './constants.js';
+import { closePopup, openPopup } from './utils.js';
 
 
 export const counterPlayer = content.querySelector('.counter__you');
@@ -14,6 +14,14 @@ export let oppResult = 0;
 export let roundResultNotification = '';
 
 
+export function openContent() {
+  openPopup(content);
+  // показывает дефолтные изображения "?" на экранчиках
+  showOnScreen(playerImage);
+  showOnScreen(oppImage);
+  closeButton.addEventListener('click', closeButtonHandler);
+}
+
 export function closeButtonHandler(evt) {
   let popup = evt.target.closest('.popup');
   startNewGame();
@@ -21,6 +29,8 @@ export function closeButtonHandler(evt) {
   closeButton.removeEventListener('click', closeButtonHandler);
   popup.classList.remove('content_moved');
   popup.removeAttribute('style');
+  console.log(interval);
+  clearInterval(interval);
 }
 
 export function startNewGame() {
