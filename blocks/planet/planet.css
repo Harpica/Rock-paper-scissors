@@ -6,4 +6,9 @@
   border-radius: 50%;
   cursor: pointer;
   padding: 0;
+  transition: box-shadow 0.2s;
+}
+
+.planet:hover {
+  box-shadow: 0 0 40px 5px white;
 }
