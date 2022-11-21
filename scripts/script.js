@@ -46,7 +46,6 @@ planetElements.forEach((planet) => {
     // анимация набора текста
     animateWritting(text, textContainer);
     setTimerId(setInterval(animateWritting, 10000, text, textContainer));
-    console.log(interval);
   });
 });
 const planets = {};
@@ -63,7 +62,8 @@ const playButtons = Array.from(document.querySelectorAll('.button__play'));
 playButtons.forEach((button) => {
   button.addEventListener('click', (event) => {
     let playerSelection = event.target.value;
-    let computerSelection = currentState.planet.play();
+    let computerSelection = currentState.planet.play(playerSelection);
+    console.log(computerSelection);
 
     showOnScreen(oppImage, computerSelection);
     showOnScreen(playerImage, playerSelection);

@@ -51,16 +51,20 @@ export class PlanetRock extends Planet {
     this.algoStyle = 'Rock';
     this._computerSelection = '';
   }
-  play() {
-    if (this.counter === 0) {
+  // Данная планета не использует layerSelection (использует только мимик)
+  play(playerSelection) {
+    if (this._counter === 0) {
       this._counter = 1;
       this._computerSelection = 'Rock';
       return this._computerSelection;
-    } else if (this.counter === 1) {
+    } else if (this._counter === 1) {
       this._counter = 0;
       this._playFairOptions();
       return this._computerSelection;
     }
+  }
+  reload() {
+    this._counter = 0;
   }
 }
 
@@ -71,16 +75,15 @@ export class PlanetHateScissors extends Planet {
     this.algoStyle = 'HateScissors';
     this._computerSelection = '';
   }
-  play() {
+    // Данная планета не использует layerSelection (использует только мимик)
+  play(playerSelection) {
     this._computerSelection = Math.floor(Math.random() * 2);
     this._computerSelection == 0
       ? (this._computerSelection = 'Rock')
       : (this._computerSelection = 'Paper');
     return this._computerSelection;
   }
-  reload() {
-    this._counter = 0;
-  }
+
 }
 
 // Планета, которая повторяет предыдущее значение игрока

@@ -29,7 +29,6 @@ export function closeButtonHandler(evt) {
   closeButton.removeEventListener('click', closeButtonHandler);
   popup.classList.remove('content_moved');
   popup.removeAttribute('style');
-  console.log(interval);
   clearInterval(interval);
 }
 
@@ -64,7 +63,6 @@ export function showOnScreen(screen, selection) {
 
 // Один раунд игры
 export function playRound(computerSelection, playerSelection) {
-  console.log(computerSelection);
   switch (playerSelection) {
     case computerSelection:
       roundResultNotification = 'Dead heat!';
@@ -99,7 +97,6 @@ export function playRound(computerSelection, playerSelection) {
   }
   counterPlayer.textContent = playerResult;
   counterOpp.textContent = oppResult;
-  console.log(roundResultNotification);
   return playerResult, oppResult;
 }
 
