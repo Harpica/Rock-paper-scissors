@@ -1,5 +1,3 @@
-import { animateWritting } from './utils.js';
-
 export const svgSelections = {
   rock: './images/rock.svg',
   paper: './images/paper.svg',
@@ -20,9 +18,3 @@ export let closeButton = content.querySelector('.button__close');
 // переменные для анимации набора текста
 export const textContainer = document.querySelector('.content__title');
 export const text = textContainer.textContent;
-
-export let interval;
-export function setTimerId(id) {
-  interval = id;
-}
-

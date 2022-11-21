@@ -5,8 +5,6 @@ import {
   currentState,
   text,
   textContainer,
-  interval,
-  setTimerId,
 } from './modules/constants.js';
 import { generateStars } from './modules/stars.js';
 import {
@@ -14,6 +12,8 @@ import {
   animateWritting,
   openPopup,
   dragOnMouseDown,
+  interval,
+  setTimerId,
 } from './modules/utils.js';
 import {
   startNewGame,
@@ -42,10 +42,12 @@ generateStars(root);
 const planetElements = Array.from(root.querySelectorAll('.planet'));
 planetElements.forEach((planet) => {
   planet.addEventListener('click', () => {
+    startNewGame();
     openContent();
     // анимация набора текста
-    animateWritting(text, textContainer);
-    setTimerId(setInterval(animateWritting, 10000, text, textContainer));
+    if (!interval) {
+      setTimerId(setInterval(animateWritting, 10000, text, textContainer));
+    }
   });
 });
 const planets = {};

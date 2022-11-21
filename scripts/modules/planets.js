@@ -11,6 +11,7 @@ class Planet {
     this._content = content;
     this._setStyle();
     this._setEventListeners(currentState);
+    this._counter = 0;
   }
   _setStyle() {
     this._planetElement.style.setProperty(
@@ -41,13 +42,15 @@ class Planet {
   _changeState() {
     !this.defeated;
   }
+  reload() {
+    this._counter = 0;
+  }
 }
 
 // Планета, которая начинает с камня и выбирает каждый второй раз камень
 export class PlanetRock extends Planet {
   constructor(planetElement, currentState, content) {
     super(planetElement, currentState, content);
-    this._counter = 0;
     this.algoStyle = 'Rock';
     this._computerSelection = '';
   }
@@ -62,9 +65,6 @@ export class PlanetRock extends Planet {
       this._playFairOptions();
       return this._computerSelection;
     }
-  }
-  reload() {
-    this._counter = 0;
   }
 }
 
@@ -90,7 +90,6 @@ export class PlanetHateScissors extends Planet {
 export class PlanetMimic extends Planet {
   constructor(planetElement, currentState, content) {
     super(planetElement, currentState, content);
-    this._counter = 0;
     this._nextChoice = '';
     this.algoStyle = 'Mimic';
     this._computerSelection = '';
@@ -106,8 +105,5 @@ export class PlanetMimic extends Planet {
       this._nextChoice = playerSelection;
       return this._computerSelection;
     }
-  }
-  reload() {
-    this._counter = 0;
   }
 }

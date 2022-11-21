@@ -1,4 +1,4 @@
-import { content, root, svgSelections, currentState, closeButton, interval} from './constants.js';
+import { content, root, svgSelections, currentState, closeButton} from './constants.js';
 import { closePopup, openPopup } from './utils.js';
 
 
@@ -29,7 +29,6 @@ export function closeButtonHandler(evt) {
   closeButton.removeEventListener('click', closeButtonHandler);
   popup.classList.remove('content_moved');
   popup.removeAttribute('style');
-  clearInterval(interval);
 }
 
 export function startNewGame() {
@@ -37,7 +36,8 @@ export function startNewGame() {
   counterOpp.textContent = 0;
   playerResult = 0;
   oppResult = 0;
-  if (currentState.planet.reload) {
+  // если это не первая игра, то обновляем каунтер (до первой игры currentState.planet == null)
+  if (currentState.planet) {
     currentState.planet.reload();
   }
   showOnScreen(playerImage);
