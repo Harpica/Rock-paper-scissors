@@ -19,10 +19,21 @@ export function animateWritting(text, textContainer) {
 
 export function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupWithEsc);
 }
 
 export function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupWithEsc);
+}
+
+// Закрывает попапы по клику на Esc
+export function closePopupWithEsc(evt) {
+  console.log(evt.key);
+  if (evt.key === 'Escape') {
+    const popup = document.querySelector('.popup_opened');
+    closePopup(popup);
+  }
 }
 
 // Drag'n'Drop для окошка
