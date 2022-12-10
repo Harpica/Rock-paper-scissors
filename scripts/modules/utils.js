@@ -1,3 +1,5 @@
+import { text, textContainer } from './constants.js';
+
 export function randomBetween(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
@@ -25,12 +27,18 @@ export function setTimerId(id) {
 export function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupWithEsc);
+  // Если пользователь покинул вкладку
+  window.addEventListener('blur', windowBlurHandler);
+  // Если пользователь вернулся на вкладку
+  window.addEventListener('focus', windowFocusHandler);
 }
 
 export function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupWithEsc);
   clearInterval(interval);
+  window.removeEventListener('blur', windowBlurHandler);
+  window.removeEventListener('focus', windowFocusHandler);
 }
 
 // Закрывает попапы по клику на Esc
@@ -60,4 +68,23 @@ export function dragOnMouseDown(event) {
 
   window.addEventListener('mousemove', onMouseMove);
   document.addEventListener('mouseup', onMouseUp);
+}
+
+// export function addBlurAndFocusEvents(popup) {
+//   if (popup.classList.contains('popup_opened')) {
+//     // Если пользователь покинул вкладку
+//     window.addEventListener('blur', windowBlurHandler);
+//     // Если пользователь вернулся на вкладку
+//     window.addEventListener('focus', windowFocusHandler);
+//   } else {
+//     window.removeEventListener('blur', windowBlurHandler);
+//     window.removeEventListener('focus', windowFocusHandler);
+//   }
+// }
+
+function windowBlurHandler() {
+  clearInterval(interval); // удаляем таймер
+}
+function windowFocusHandler() {
+  setTimerId(setInterval(animateWritting, 10000, text, textContainer)); // снова запускаем таймер.
 }

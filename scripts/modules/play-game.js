@@ -1,6 +1,17 @@
-import { content, root, svgSelections, currentState, closeButton} from './constants.js';
-import { closePopup, openPopup } from './utils.js';
-
+import {
+  content,
+  root,
+  svgSelections,
+  currentState,
+  closeButton,
+} from './constants.js';
+import {
+  closePopup,
+  openPopup,
+  animateWritting,
+  interval,
+  setTimerId,
+} from './utils.js';
 
 export const counterPlayer = content.querySelector('.counter__you');
 export const counterOpp = content.querySelector('.counter__opp');
@@ -12,7 +23,6 @@ export let playerResult = 0;
 export let oppResult = 0;
 
 export let roundResultNotification = '';
-
 
 export function openContent() {
   openPopup(content);
